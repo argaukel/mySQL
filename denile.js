@@ -25,8 +25,21 @@ function afterConnection() {
   connection.query("SELECT * FROM products", function(err, res) {
     if (err) throw err;
     console.table(res);
+    console.log(res[0]);
     console.log("Name of item 0:",res[0].product_name)
-    connection.end();
+    // connection.end();
+    start();
   });
 }
 
+function start() {
+  inquirer.prompt(
+
+    {
+      type: "input",
+      name: "userPick",
+      message: "What ID are you buying?"
+    }).then(function(answer){
+      console.log(answer.userPick)
+    });
+  } 
