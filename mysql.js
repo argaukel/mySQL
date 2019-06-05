@@ -18,21 +18,11 @@ var connection = mysql.createConnection({
 connection.connect(function(err) {
     if (err) throw err;
     console.log("connected as id " + connection.threadId + "\n");
-    afterConnection();
+    // afterConnection();
+    start();
 });
 
-function afterConnection() {
-    connection.query("SELECT * FROM products", function(err, res) {
-      if (err) throw err;
-      console.table(res);
-      console.log(res[0]);
-      console.log("Name of item 0:",res[0].product_name)
-      // connection.end();
-      start();
-    });
-  }
-
-  function start() {
+function start() {
   inquirer.prompt(
     {
       type: "input",
@@ -42,9 +32,25 @@ function afterConnection() {
       // console.log(answer.userPick);
       var selectId = answer.userPick;
       console.log(selectId);
+      connection.query("SELECT * FROM products", function(err, res) {
+      
+      
       for (var i = 0; i < res.length; i++){
           console.log(res[i].item_id)
-      } 
+      } })
       
     });
   };
+
+// function afterConnection() {
+//     connection.query("SELECT * FROM products", function(err, res) {
+//       if (err) throw err;
+//       console.table(res);
+//       console.log(res[0]);
+//       console.log("Name of item 0:",res[0].product_name)
+//       // connection.end();
+//     //   start();
+//     });
+//   }
+
+  
