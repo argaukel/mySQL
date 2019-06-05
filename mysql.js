@@ -22,17 +22,17 @@ connection.connect(function(err) {
 });
 
 function afterConnection() {
-  connection.query("SELECT * FROM products", function(err, res) {
-    if (err) throw err;
-    console.table(res);
-    console.log(res[0]);
-    console.log("Name of item 0:",res[0].product_name)
-    // connection.end();
-    start();
-  });
-}
+    connection.query("SELECT * FROM products", function(err, res) {
+      if (err) throw err;
+      console.table(res);
+      console.log(res[0]);
+      console.log("Name of item 0:",res[0].product_name)
+      // connection.end();
+      start();
+    });
+  }
 
-function start() {
+  function start() {
   inquirer.prompt(
     {
       type: "input",
@@ -42,14 +42,9 @@ function start() {
       // console.log(answer.userPick);
       var selectId = answer.userPick;
       console.log(selectId);
+      for (var i = 0; i < res.length; i++){
+          console.log(res[i].item_id)
+      } 
+      
     });
   };
-
-
-
-
-
-
-
-
-
