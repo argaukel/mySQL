@@ -33,10 +33,11 @@ function start() {
       var selectId = answer.userPick;
       console.log(selectId);
       connection.query("SELECT * FROM products", function(err, res) {
-      
-      
       for (var i = 0; i < res.length; i++){
-          console.log(res[i].item_id)
+        if (selectId == res[i].item_id){  
+        console.log(res[i])
+        connection.end();
+        };
       } })
       
     });
